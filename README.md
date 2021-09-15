@@ -71,8 +71,6 @@ Make sure [Git is installed](https://git-scm.com/downloads) on your machine and 
 
   // Show path between 0 and 6.
   graph.PrintShortestPathBetween(0, 6)
-
-
 ```
 ![graph](https://raw.githubusercontent.com/lovesaroha/gimages/main/4.png)
 

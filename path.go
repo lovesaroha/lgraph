@@ -226,15 +226,27 @@ func findClosestUnvisited(distanceTo []distanceToObject, visited []interface{}) 
 // This function print path.
 func printPath(edgeTo []edgeToObject, valueA interface{}, valueB interface{}) {
 	var currentVertex = valueB
+	stack := lstack.Create()
 	for {
 		var from = edgeToVertex(edgeTo, currentVertex)
+		stack.Push(currentVertex)
 		if from == valueA || from == nil {
 			// End of path.
-			fmt.Println(from, "->", currentVertex)
+			stack.Push(from)
+			break
+		}
+		currentVertex = from
+	}
+	for {
+		if stack.IsEmpty() {
 			return
 		}
-		fmt.Println(from, "->", currentVertex)
-		currentVertex = from
+		v := stack.Pop()
+		if stack.IsEmpty() {
+			fmt.Printf("%v", v)
+		} else {
+			fmt.Printf("%v -> ", v)
+		}
 	}
 }
 
