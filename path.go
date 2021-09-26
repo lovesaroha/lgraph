@@ -274,3 +274,15 @@ func (graph GraphObject) PrintShortestPathBetween(valueA interface{}, valueB int
 	fmt.Println("Shortest path between", valueA, "and", valueB)
 	printPath(edgeTo, valueA, valueB)
 }
+
+// This function checks if two vertices are connected.
+func (graph GraphObject) IsConnected(valueA interface{}, valueB interface{}) bool {
+	if graph.weighted {
+		// Perform dijkstra.
+		_, _, visited := graph.shortestPathFrom(valueA)
+		return isVisited(visited, valueB)
+	}
+	// Perform breadth first search from vertex A.
+	visited, _ := graph.breadthFirstSearch(valueA)
+	return isVisited(visited, valueB)
+}
